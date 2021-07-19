@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Errors\" />
+    <Folder Include="Identity\Models\" />
+    <Folder Include="Identity\Services\Implementations\" />
+    <Folder Include="Identity\Services\Interfaces\" />
+    <Folder Include="Identity\Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Campus.Entities\Campus.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
