@@ -8,6 +8,9 @@ import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CampusComponent } from './account/campus/campus.component';
+import { StudentsComponent } from './account/students/students.component';
+import { FacultyComponent } from './account/faculty/faculty.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthenticationComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent, 
+    AccountComponent,
+    CampusComponent,
+    StudentsComponent,
+    FacultyComponent, 
   ],
   imports: [BrowserModule, RouterModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],

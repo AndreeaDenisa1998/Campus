@@ -4,6 +4,9 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { LoginComponent } from './authentication/login/login.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { CampusComponent } from './account/campus/campus.component';
+import { FacultyComponent } from './account/faculty/faculty.component';
+import { StudentsComponent } from './account/students/students.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/authentication', pathMatch: 'full' },
@@ -16,7 +19,16 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
-  { path:'account', component:AccountComponent}
+  { 
+    path:'account', 
+    component:AccountComponent,
+    children:[
+      {path:'campus', component:CampusComponent},
+      {path:'faculty', component:FacultyComponent},
+      {path:'students', component:StudentsComponent},
+    ],
+  }
+
 ];
 
 @NgModule({
