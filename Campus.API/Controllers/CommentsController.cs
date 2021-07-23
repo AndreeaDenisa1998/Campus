@@ -6,66 +6,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Campus.Business.Campus.Models.Comments;
+using Microsoft.IdentityModel.Tokens;
+using Campus.Business.Campus.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CampusPortal1.api.Controllers
+namespace Campus.api.Controllers
 {
-    [Route("api/[CommentsController]")]
+    [Route("api/v1/Comments")]
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private CampusContext context;
-        public CommentsController()
+        private readonly ICommentService commentService;
+        public CommentsController(ICommentService commentService)
         {
-            context = new CampusContext();
-        }
-        // GET: api/<StudentsController>
-        [HttpGet]
-        public IEnumerable<Comments> Get()
-        {
-            return context.Comments.ToList();
+            this.commentService = commentService;
         }
 
-        // GET api/<CommentsController>/5
         [HttpGet("{id}")]
-        public Comments Get(Guid id)
-        {
-            return context.Comments.FirstOrDefault(s => s.Id.Equals(id));
 
-        }
-
-        // POST api/<CommentsController>
-        [HttpPost]
-        public void Comments([FromBody] Comments comments)
-        {
-            context.Comments.Add(comments);
-
-            context.SaveChanges();
-        }
-
-        // PUT api/<CommentsController>/5
-        [HttpPut("{id}")]
-        public void Put([FromBody] Comments comments)
-        {
-            if (!comments.Id.HasValue)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
-            }
-            context.Comments.Update(comments);
-
-            context.SaveChanges();
-        }
-
-        // DELETE api/<CommentsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(Guid id)
-        {
-            var commentToDelete = context.Comments.First(s => s.Id.Equals(id));
-            context.Comments.Remove(commentToDelete);
-
-            context.SaveChanges();
-        }
+    public async Task<IActionResult> Get([FromRoute] Guid id)
+    {
+        var result = await commentService.GetById(id);
+            return Ok(result);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateModelComment model)
+    {
+        var result = await commentService.Create(model);
+        return Created(result.Id.ToString(), null);
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    {
+        await commentService.Delete(id);
+        return NoContent();
+    }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreateModelComment model)
+    {
+        await commentService.Update(id, model);
+        return NoContent();
+    }
     }
 }

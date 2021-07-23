@@ -42,7 +42,7 @@ namespace Campus.Entities
 		public ICollection<TypesUsers> TypesUsers { get; private set; }
 
 		public ICollection<Comments> Comments { get; private set; }
-
+		public ICollection<Review> Reviews { get; private set; }
 		public ICollection<CafeteriaPost> CafeteriaPost { get; private set; }
 
 	

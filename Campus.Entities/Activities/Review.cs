@@ -28,9 +28,11 @@ namespace Campus.Entities
         public int NumberOfLikes { get; private set; }
         [Required]
         public Guid IdStudents { get; private set; }
-
+        public Guid IdUsers { get; private set; }
+        public Guid IdPosts { get; private set; }
         public Students Students { get; private set; }
-
+        public Users Users { get; set; }
+        public Posts Posts { get; set; }
         public CafeteriaPost CafeteriaPost { get; private set; }
     }
 }

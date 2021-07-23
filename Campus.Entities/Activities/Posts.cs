@@ -44,6 +44,8 @@ namespace Campus.Entities
 
         public ICollection<Comments> Comments { get; private set; }
 
+        public ICollection<Review> Reviews { get; private set; }
+
 
     }
 }

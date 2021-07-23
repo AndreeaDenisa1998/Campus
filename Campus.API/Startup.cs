@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Campus.Business.Campus.Services;
 using Campus.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace Campus.API
 {
@@ -36,11 +38,12 @@ namespace Campus.API
 			{
 				config.UseSqlServer(Configuration.GetConnectionString("Campus"));
 			});
-
-			services.AddSwaggerGen()
-					.AddMvc();
-					//.AddFluentValidation();
-		}
+			services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ICommentService, ICommentService>();
+			services.AddSwaggerGen();
+            //.AddMvc();
+            //.AddFluentValidation();
+        }
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
@@ -61,6 +64,9 @@ namespace Campus.API
 			{
 				endpoints.MapControllers();
 			});
+			using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+			var dbContext = serviceScope.ServiceProvider.GetService<CampusContext>();
+			dbContext.Database.EnsureCreated();
 		}
 	}
 }
