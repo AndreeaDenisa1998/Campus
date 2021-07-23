@@ -4,6 +4,29 @@
     <span>Campus</span>
   </h1>
   <h2>Portal</h2>
+  <!--------------------HAMBURGER MENU---------------->
+  <div class="menu-wrap">
+    <input type="checkbox" class="toggler">
+      <div class="hamburger">
+        <div></div>
+      </div>
+      <div class="menu">
+      <div>
+        <div>
+          <ul>
+            <li><a routerLink="/account" class="home-btn">Home</a></li>
+            <li><a routerLink="/account/campus"
+              routerLinkActive="active">Campus</a></li>
+            <li><a routerLink="/account/students"
+              routerLinkActive="active">Students</a></li>
+              <li><a routerLink="/account/faculty"
+                routerLinkActive="active">Faculty</a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!--------------------HAMBURGER MENU---------------->
   <div class="header-right">
     <a routerLink="/account" class="home-btn">Home</a>
     <a routerLink="/account/campus"

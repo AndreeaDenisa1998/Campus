@@ -6,7 +6,17 @@
   left:0;
   background-size: cover;
 }
-
 .container1 {
   position: relative;
+}
+.mobile-picutre{
+  display:none;
+}
+@media screen and (max-width: 500px) {
+  .pc-picture{
+    display:none;
+  }
+  .mobile-picutre{
+    display:block;
+  }
 }

@@ -8,4 +8,6 @@ import { AfterViewInit, Component } from '@angular/core';
 export class AppComponent {
   title = 'demo-app';
   myimage: string="assets/img/space.jpg";
+  myphoneimage: string="assets/img/space.mobile.jpg";
+
 }
