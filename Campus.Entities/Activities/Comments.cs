@@ -4,16 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Campus.Entities.Authentication;
 
 namespace Campus.Entities
 {
     public sealed class Comments : Entity
     {
-        public Comments(Guid idPosts,string content,Guid idStudent, int numberofLikes, DateTime date) : base()
+        public Comments(Guid idPosts,string content,Guid idUsers, int numberofLikes, DateTime date) : base()
         {
             IdPosts = idPosts;
             Content = content;
-            IdStudents = idStudent;
+            IdUsers = idUsers;
             NumberOfLikes = numberofLikes;
             Date = date;
         }
@@ -22,12 +23,12 @@ namespace Campus.Entities
         public string Content {get; private set;}
 
         [Required]
-        public Guid IdStudents { get; private set; }
+        public Guid IdUsers { get; private set; }
 
         [Required]
         public Guid IdPosts { get; private set; }
 
-        public Students Students { get; private set; }
+        public Users Users { get; private set; }
 
         [Required]
         public int NumberOfLikes { get; private set; }

@@ -4,15 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Campus.Entities.Authentication;
 
 namespace Campus.Entities
 {
     public sealed class Review : Entity
     {
-        public Review(string content,Guid idStudent,int numberofStars,DateTime date,int numberofLikes) : base()
+        public Review(string content,Guid idUsers,int numberofStars,DateTime date,int numberofLikes) : base()
         {
             Content = content;
-            IdStudents = idStudent;
+            IdUsers = idUsers;
             NumberOfLikes = numberofLikes;
             Date = date;
             NumberOfStars = numberofLikes;
@@ -27,10 +28,9 @@ namespace Campus.Entities
         [Required]
         public int NumberOfLikes { get; private set; }
         [Required]
-        public Guid IdStudents { get; private set; }
+        public Guid IdUsers { get; private set; }
 
-        public Students Students { get; private set; }
+        public Users Users { get; private set; }
 
-        public CafeteriaPost CafeteriaPost { get; private set; }
     }
 }

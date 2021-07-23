@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <Folder Include="Errors\" />
-    <Folder Include="Identity\Models\" />
     <Folder Include="Identity\Services\Implementations\" />
     <Folder Include="Identity\Services\Interfaces\" />
-    <Folder Include="Identity\Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="7.2.1" />
   </ItemGroup>
 
   <ItemGroup>
