@@ -35,6 +35,6 @@ namespace Campus.Persistence
         public DbSet<Review> Review { get; set; }
 
         public DbSet<CafeteriaPost> CafeteriaPost { get; set; }
-
+        public object Campus { get; internal set; }
     }
 }

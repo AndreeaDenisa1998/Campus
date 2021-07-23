@@ -34,8 +34,10 @@ namespace Campus.API
 
 			services.AddDbContext<CampusContext>(config =>
 			{
-				config.UseSqlServer(Configuration.GetConnectionString("Campus"));
+				config.UseSqlServer(Configuration.GetConnectionString("CampusConnection"));
 			});
+            
+            services.AddScoped<ICampusRepository, CampusRepository>();
 
 			services.AddSwaggerGen()
 					.AddMvc();
@@ -57,10 +59,23 @@ namespace Campus.API
 
 			app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "My API - v1");
+            });
+
+        
+            app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
 			});
+
+			using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+			var dbContext = serviceScope.ServiceProvider.GetServices<CampusContext>();
+			dbContext.Database.EnsureCreated();
+
 		}
 	}
 }
+ 

@@ -5,15 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Errors\" />
-    <Folder Include="Identity\Models\" />
-    <Folder Include="Identity\Services\Implementations\" />
-    <Folder Include="Identity\Services\Interfaces\" />
-    <Folder Include="Identity\Validators\" />
+    <Compile Remove="Errors\**" />
+    <Compile Remove="Identity\**" />
+    <EmbeddedResource Remove="Errors\**" />
+    <EmbeddedResource Remove="Identity\**" />
+    <None Remove="Errors\**" />
+    <None Remove="Identity\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Campus.Entities\Campus.Entities.csproj" />
+    <ProjectReference Include="..\Campus.Persistence\Campus.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

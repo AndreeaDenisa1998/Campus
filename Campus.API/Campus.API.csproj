@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0-preview.6.21352.12" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="Turner.Infrastructure.Crud.EntityFrameworkCore" Version="2.2.0-alpha5" />
   </ItemGroup>
 
@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Campus.Business\Campus.Business.csproj" />
+    <ProjectReference Include="..\Campus.Entities\Campus.Entities.csproj" />
     <ProjectReference Include="..\Campus.Persistence\Campus.Persistence.csproj" />
   </ItemGroup>
 
