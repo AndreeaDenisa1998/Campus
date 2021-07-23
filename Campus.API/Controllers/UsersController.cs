@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Campus.Entities.Authentication;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CampusPortal1.api.Controllers
+namespace Campus.api.Controllers
 {
     [Route("api/[UsersController]")]
     [ApiController]
