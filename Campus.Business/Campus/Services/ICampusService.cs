@@ -10,5 +10,9 @@ namespace Campus.Business.Campus.Services
     public interface ICampusService
     {
         Task<CampusModel> GetById(Guid id);
+
+        Task<CampusModel> Create(CreateCampusModel model);
+
+
     }
 }

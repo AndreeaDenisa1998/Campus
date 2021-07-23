@@ -22,9 +22,20 @@ namespace Campus.Persistence
             return await context.Campus.Include(x => x.Comments).SingleOrDefaultAsync(t => t.Id == id);
         }
 
-        Task<Posts> ICampusRepository.GetCampusById(Guid id)
+        public async Task Create(ITOO.Basic.CommonModel.Campus campus)
         {
-            throw new NotImplementedException();
+            await this.context.Campus.AddAsync(campus);
+        }
+
+
+        Task<ITOO.Basic.CommonModel.Campus> ICampusRepository.GetCampusById(Guid id)
+        {
+            return GetCampusById(id);
+        }
+
+        public async Task SaveChanges()
+        {
+            await this.context.SaveChangesAsync();
         }
     }
 }

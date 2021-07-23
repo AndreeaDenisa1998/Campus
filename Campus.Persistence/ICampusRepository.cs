@@ -9,6 +9,10 @@ namespace Campus.Persistence
 {
     public interface ICampusRepository
     {
-        Task <Posts> GetCampusById(Guid id);
+        Task <ITOO.Basic.CommonModel.Campus> GetCampusById(Guid id);
+
+        Task Create(ITOO.Basic.CommonModel.Campus campus);
+
+        Task SaveChanges();
     }
 }

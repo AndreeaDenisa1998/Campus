@@ -6,13 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Architect.Identities.EntityFramework" Version="1.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="DashboardCode.Routines.Storage.EfCore.Relational.InMemory" Version="3.0.5" />
     <PackageReference Include="EFCore5.0.AutomaticMigrations.NetTopologySuite" Version="5.0.7" />
+    <PackageReference Include="fm.EntityFrameworkCore.SqlServer" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0-preview.6.21352.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
-    <PackageReference Include="Turner.Infrastructure.Crud.EntityFrameworkCore" Version="2.2.0-alpha5" />
+    <PackageReference Include="Turner.Infrastructure.Crud.EntityFrameworkCore" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>

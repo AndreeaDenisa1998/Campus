@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Campus.Business.Campus;
+using Campus.Business.Campus.Services;
 using Campus.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,11 @@ namespace Campus.API
 			});
             
             services.AddScoped<ICampusRepository, CampusRepository>();
+            services.AddScoped<ICampusService, CampusService>();
+
+
+            services.AddAutoMapper(config => config.AddProfile<CampusMappingProfile>());
+
 
 			services.AddSwaggerGen()
 					.AddMvc();
