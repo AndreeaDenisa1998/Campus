@@ -6,67 +6,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Campus.Business.Campus.Models.Comments;
+using Campus.Business.Campus.Services;
+using Campus.Business.Campus.Services.ReviewsS;
+using Campus.Business.Campus.Models.Reviews;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CampusPortal1.api.Controllers
+namespace Campus.api.Controllers
 {
-    [Route("api/[ReviewsController]")]
+    [Route("api/v1/review")]
     [ApiController]
     public class ReviewsController : ControllerBase
     {
-        private CampusContext context;
-        public ReviewsController()
+        private readonly IReviewService reviewService;
+
+        public ReviewsController(IReviewService reviewService)
         {
-            context = new CampusContext();
-        }
-        // GET: api/<StudentsController>
-        [HttpGet]
-        public IEnumerable<Review> Get()
-        {
-            return context.Review.ToList();
+            this.reviewService = reviewService;
         }
 
-        // GET api/<ReviewsController>/5
         [HttpGet("{id}")]
-        public Review Get(Guid id)
-        {
-            return context.Review.FirstOrDefault(s => s.Id.Equals(id));
 
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+            var result = await reviewService.GetById(id);
+            return Ok(result);
         }
 
-
-        // POST api/<ReviewsController>
         [HttpPost]
-        public void Review([FromBody] Review review)
+        public async Task<IActionResult> Create([FromBody] CreateReviewModel model)
         {
-            context.Review.Add(review);
-
-            context.SaveChanges();
+            var result = await reviewService.Create(model);
+            return Created(result.Id.ToString(), null);
         }
 
-        // PUT api/<ReviewsController>/5
-        [HttpPut("{id}")]
-        public void Put([FromBody] Review review)
-        {
-            if (!review.Id.HasValue)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
-            }
-            context.Review.Update(review);
-
-            context.SaveChanges();
-        }
-
-        // DELETE api/<ReviewsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var reviewToDelete = context.Review.First(s => s.Id.Equals(id));
-            context.Review.Remove(reviewToDelete);
+            await reviewService.Delete(id);
+            return NoContent();
+        }
 
-            context.SaveChanges();
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreateReviewModel model)
+        {
+            await reviewService.Update(id, model);
+            return NoContent();
         }
     }
 }
