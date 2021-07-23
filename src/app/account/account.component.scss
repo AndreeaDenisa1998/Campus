@@ -4,21 +4,20 @@
 $culoare-buton-principal:#1e1f5e;
 
 .header {
-  overflow: hidden;
   background-color: #ffffff;
-  padding: 20px 10px;
+  padding: 40px 10px;
   margin-top:-27px;
   margin-right:-8px;
   margin-left:-8px;
   position: relative;
 }
-.header a {
+.header a, .header-right .dropdown{
   float: left;
   color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px; 
+  font-size: 20px; 
   line-height: 25px;
   border-radius: 4px;
   margin-top:-20px;
@@ -28,7 +27,7 @@ h1 {
   position: relative;
   font-family: 'Exo';
   font-size: 3em;
-  margin: 0;
+  margin-top: -0.5em;
   transform: skew(-15deg);
   letter-spacing: 0.03em;
   margin-right:50%;
@@ -70,9 +69,9 @@ h2 {
   font-family: 'Mr Dafoe';
   margin: 0;
   font-size: 2.5em;
-  margin-top: -3em;
+  margin-top: -3.5em;
   margin-left:1.5em;
-  margin-bottom:2%;
+  padding-bottom:3%;  
   color: white;
   text-shadow: 0 0 0.05em #fff, 0 0 0.2em #fe05e1, 0 0 0.3em #fe05e1;
   transform: rotate(-7deg);
@@ -91,24 +90,283 @@ h2 {
 
 .header-right {
   float: right;
+  margin-top:-2em;
 }
-
+.homt-btn i{
+  font-size: 12pt;
+}
 .menu-wrap{
   display:none;
 }
+//---------------------------------------------------------USER DROPDOWN------------------------------------------------------------
+.dropbtn {
+  color: black;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
 
-@media screen and (max-width: 500px) {
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  padding:10%;
+  margin-top:0.5em;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content .dropwdown-links {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content .dropwdown-links:hover {background-color: transparent;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+//-------------------------------NOTIFICATION-------------------------------
+.header-right .bell-icon{
+  float: left;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px; 
+  margin-top:-25px;
+}
+.bell-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  svg {
+    margin: auto;
+    position: relative;
+    right: 2%;
+    width: 80%;
+    height: 80%;
+    stroke: rgba(0, 0, 0, 0.75);
+  }
+  .bell-icon__group {
+    transform-origin: 50% 2px;
+    transform: rotate(-8deg);
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+  .bell-icon__ball {
+    transform-origin: 50% 2px;
+    transform: translateX(-6.5%);
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+  &:focus,
+  &:hover {
+    outline: none;
+    .bell-icon__group {
+      animation: animateGroup 2.3s;
+    }
+    .bell-icon__ball {
+      animation: animateBall 2.3s;
+    }
+    .notification-amount {
+      opacity: 1;
+      visibility: visible;
+      &::before {
+        animation-name: bounce;
+        animation-delay: 450ms;
+      }
+    }
+  }
+}
+
+.notification-amount {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 20%;
+  right: 24%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Copse", serif;
+  font-size: 12px;
+  span {
+    position: relative;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f72918;
+    border-radius: 50%;
+    z-index: 0;
+    transform: scale(0);
+    animation-duration: 800ms;
+    animation-fill-mode: both;
+  }
+}
+
+$frameLength: 0.8771;
+
+@keyframes animateGroup {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  #{$frameLength * 20%} {
+    transform: rotate(0deg);
+  }
+  #{$frameLength * 40%} {
+    transform: rotate(-20deg);
+  }
+  #{$frameLength * 55%} {
+    transform: rotate(20deg);
+  }
+  #{$frameLength * 65%} {
+    transform: rotate(-20deg);
+  }
+  #{$frameLength * 74%} {
+    transform: rotate(8deg);
+  }
+  #{$frameLength * 85%} {
+    transform: rotate(-15deg);
+  }
+  #{$frameLength * 90%} {
+    transform: rotate(-7deg);
+  }
+}
+
+@keyframes animateBall {
+  0%,
+  100% {
+    transform: translateX(-6.5%);
+  }
+  #{$frameLength * 20%} {
+    transform: translateX(0%);
+  }
+  #{$frameLength * 25%} {
+    transform: translateX(-1%);
+  }
+  #{$frameLength * 40%} {
+    transform: translateX(11%);
+  }
+  #{$frameLength * 55%} {
+    transform: translateX(-11%);
+  }
+  #{$frameLength * 60%} {
+    transform: translateX(0%);
+  }
+  #{$frameLength * 68%} {
+    transform: translateX(10%);
+  }
+  #{$frameLength * 78%} {
+    transform: translateX(-11%);
+  }
+  #{$frameLength * 90%} {
+    transform: translateX(11%);
+  }
+  #{$frameLength * 98%} {
+    transform: translateX(-11%);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0);
+  }
+
+  14% {
+    transform: scale(1.15);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.15);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+//----------------------------END NOTIFICATION------------------------
+//-------------SEARCH BAR----------------------
+/* Style the search field */
+.page-content{
+  width:100%;
+  height:100%;
+  position: relative;
+}
+.page-content form{
+  display:flex;
+  justify-content: center;
+  margin-top:20px;
+}
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius:25px;
+  float: left;
+  background: #ffffff;
+  outline:none;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  color: white;
+  font-size: 35px;
+  background-color: transparent;
+  border-color:transparent;
+  cursor: pointer;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+//----------------------END SEARCH BAR----------------------------
+
+@media screen and (max-width: 800px) {
 
   .header-right{
     display:none;
   }//the menu disapears
   h1{
     margin-top:-0.5em;
-    margin-left:2em;
+    margin-left:2.5em;
   }
   h2{
-    margin-top:-0.9em;
-    margin-bottom:0%;
+    margin-top:-1.7em;
+    padding-bottom:0;
     margin-left:3.5em;
   }
   /*----------------------------Hamburger Menu-------------------*/
