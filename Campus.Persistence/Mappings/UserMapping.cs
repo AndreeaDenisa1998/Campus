@@ -20,6 +20,10 @@ namespace Campus.Persistence.Mappings
                 entity.HasMany(u => u.Reviews)
                     .WithOne(r => r.Users)
                     .HasForeignKey(u => u.IdUsers);
+                entity.HasMany(u => u.Notification)
+                    .WithOne(r => r.Users)
+                    .HasForeignKey(u => u.IdUsers);
+                    //.HasForeignKey(u => u.Email);
             });
         }
     }

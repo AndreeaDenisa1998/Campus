@@ -1,5 +1,6 @@
 ﻿using System;
 using Campus.Entities;
+using Campus.Entities.Activities;
 using Microsoft.EntityFrameworkCore;
 namespace Campus.Persistence
 {
@@ -32,6 +33,7 @@ namespace Campus.Persistence
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Comments> Comments { get; set; }
 
+        public DbSet<Notification> Notification { get; set; }
         public DbSet<Review> Review { get; set; }
 
         public DbSet<CafeteriaPost> CafeteriaPost { get; set; }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Campus.Entities.Activities;
 
 namespace Campus.Persistence.Mappings
 {
@@ -20,6 +21,9 @@ namespace Campus.Persistence.Mappings
                 entity.HasMany(u => u.Reviews)
                     .WithOne(r => r.Posts)
                     .HasForeignKey(u => u.IdPosts);
+                entity.HasOne(u => u.Notification)
+                    .WithOne(n => n.Posts)
+                    .HasForeignKey<Notification>(d => d.IdPosts);
 
             });
         }

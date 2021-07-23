@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Campus.Business.Campus.Services;
+using Campus.Business.Campus.Services.NotificationS;
 using Campus.Business.Campus.Services.ReviewsS;
 using Campus.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -42,6 +43,7 @@ namespace Campus.API
 			services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<ICommentService, ICommentService>();
             services.AddScoped<IReviewService, IReviewService>();
+            services.AddScoped<INotificationService, INotificationService>();
 			services.AddSwaggerGen();
             //.AddMvc();
             //.AddFluentValidation();

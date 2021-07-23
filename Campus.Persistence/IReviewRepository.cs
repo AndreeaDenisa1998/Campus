@@ -7,7 +7,7 @@ using Campus.Entities;
 
 namespace Campus.Persistence
 {
-    public Interface IReviewRepository
+    public interface IReviewRepository
     {
         Task<Review> GetReviewById(Guid id);
         Task Create(Review review);

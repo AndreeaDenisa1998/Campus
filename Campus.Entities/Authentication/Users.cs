@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Campus.Entities.Activities;
 
 namespace Campus.Entities
 {
@@ -36,6 +37,7 @@ namespace Campus.Entities
 		[AllowNull]
 		public Guid? IdStudents { get; private set; }
 
+		public Notification Notifications { get; set; }
 		public Students Student { get; private set; }
 		public ICollection<Posts> Posts { get; private set; }
 
@@ -43,6 +45,7 @@ namespace Campus.Entities
 
 		public ICollection<Comments> Comments { get; private set; }
 		public ICollection<Review> Reviews { get; private set; }
+        public ICollection<Notification> Notification { get; private set; }
 		public ICollection<CafeteriaPost> CafeteriaPost { get; private set; }
 
 	

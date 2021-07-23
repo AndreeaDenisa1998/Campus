@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Campus.Entities.Activities;
 
 namespace Campus.Entities
 {
@@ -39,6 +40,7 @@ namespace Campus.Entities
         public Guid IdStudents { get;private set; }
 
         public Students Students { get; private set; }
+        public Notification Notification { get; set; }
 
         
 
