@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Campus.Business.Campus.Models;
+using Campus.Business.Campus.Models.Post;
+using Microsoft.IdentityModel.Tokens;
+using Campus.Business.Campus.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,57 +19,50 @@ namespace CampusPortal1.api.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private CampusContext context;
-        public PostsController()
+        private readonly ICampusService campusService;
+        public PostsController(ICampusService campusService)
         {
-            context = new CampusContext();
+            this.campusService = campusService;
         }
         // GET: api/<StudentsController>
         [HttpGet]
-        public IEnumerable<Posts> Get()
+       /* public IEnumerable<Posts> Get()
         {
             return context.Posts.ToList();
         }
-
+       */
         // GET api/<PostsController>/5
         [HttpGet("{id}")]
-        public Posts Get(Guid id)
+        public async Task<IActionResult> Get([FromRoute] Guid id)
         {
-            return context.Posts.FirstOrDefault(s => s.Id.Equals(id));
-
+            var result = await campusService.GetById(id);
+            return Ok(result);
         }
 
         // POST api/<PostsController>
         [HttpPost]
-        public void Post([FromBody] Posts posts)
+        public async Task<IActionResult> Create([FromBody] CreateCampusModel model)
         {
-            context.Posts.Add(posts);
+            var result = await campusService.Create(model);
 
-            context.SaveChanges();
+            return Created(result.IdPost.ToString(), null);
         }
 
         // PUT api/<PostsController>/5
         [HttpPut]
-        public void Put([FromBody] Posts posts)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreateModelPost model)
         {
-            if (!posts.Id.HasValue)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
-            }
-            context.Posts.Update(posts);
-
-            context.SaveChanges();
+            await campusService.Update(id, model);
+            return NoContent();
         }
 
         // DELETE api/<PostsController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var postToDelete = context.Posts.First(s => s.Id.Equals(id));
-            context.Posts.Remove(postToDelete);
-
-            context.SaveChanges();
+            await campusService.Delete(id);
+            return NoContent();
         }
+
     }
 }

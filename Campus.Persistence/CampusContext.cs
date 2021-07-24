@@ -1,21 +1,22 @@
 ﻿using System;
 using Campus.Entities;
+//using Campus.Entities.Activities;
 using Microsoft.EntityFrameworkCore;
 namespace Campus.Persistence
 {
-	public sealed class CampusContext : DbContext
-	{
+    public sealed class CampusContext : DbContext
+    {
         public CampusContext(DbContextOptions<CampusContext> options) : base(options)
         {
             //Database.Migrate();
             //nu gasesc pachetul
         }
 
-		public CampusContext()
-		{
-		}
+        public CampusContext()
+        {
+        }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>()
                 .HasMany<TypesUsers>(user => user.TypesUsers)
@@ -30,11 +31,12 @@ namespace Campus.Persistence
         public DbSet<TypesUsers> TypesUsers { get; set; }
 
         public DbSet<Posts> Posts { get; set; }
-        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Comments> Posts { get; set; }
 
+       // public DbSet<Notification> Notification { get; set; }
         public DbSet<Review> Review { get; set; }
 
         public DbSet<CafeteriaPost> CafeteriaPost { get; set; }
-        public object Campus { get; internal set; }
+
     }
 }

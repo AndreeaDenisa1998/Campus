@@ -30,7 +30,7 @@ namespace Campus.API.Controllers
         {
             var result = await campusService.Create(model);
 
-            return Created(result.Id.ToString(), null);
+            return Created(result.IdPost.ToString(), null);
         }
 
       
