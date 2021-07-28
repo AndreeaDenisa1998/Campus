@@ -1,3 +1,4 @@
+//------------------------Style of the background image---------------
 .background img{
   width:100%;
   height: auto;
@@ -6,16 +7,21 @@
   left:0;
   background-size: cover;
 }
-.container1 {
-  position: relative;
-}
+
 .mobile-picutre{
   display:none;
 }
-@media screen and (max-width: 500px) {
+
+.container1 {
+  position: relative;
+}
+
+@media screen and (max-width: 800px) {
+
   .pc-picture{
     display:none;
   }
+  
   .mobile-picutre{
     display:block;
   }

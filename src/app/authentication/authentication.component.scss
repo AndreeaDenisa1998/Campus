@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap');
 $culoare-buton-principal:#1e1f5e;
+//----------------------centered container---------------
 .container{
   display: grid;
   justify-content: center;
@@ -9,6 +10,7 @@ $culoare-buton-principal:#1e1f5e;
   position: relative;
   margin-top:60px;
 }
+//-------------------Style of the logo----------------------
 h1 {
   position: relative;
   font-family: 'Exo';
@@ -60,6 +62,7 @@ h2 {
   transform: rotate(-7deg);
 }
 
+//----------------------------The Login and Register Buttons -------------
 .authentication-container {
   width: 500px;
   margin-top:15px;
@@ -131,6 +134,8 @@ h2 {
   }
   
 }
+
+
 @media screen and (max-width: 800px) {
   h1{
     font-size:5em;
